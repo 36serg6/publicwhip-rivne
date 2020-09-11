@@ -13,7 +13,7 @@ namespace :division_cashe do
   task whip: :environment do
     p "Start whip"
     Division.all.find_each do |d|
-      p "division_id: " + d.id
+      p "division_id: " + d.id.to_s
       Vote.joins(:mp).where(division_id: d.id).to_a.group_by{|m| m.mp.faction}.each do |f|
         division = d.id
         faction = f[0]
@@ -42,7 +42,7 @@ namespace :division_cashe do
   task info: :environment do
     p "Start info"
     Division.all.find_each do |d|
-      p "division_id: " + d.id
+      p "division_id: " + d.id.to_s
       division = d.id
       v =  Vote.joins(:mp).where(division_id: d.id).map {|v| v}
       hash = {
