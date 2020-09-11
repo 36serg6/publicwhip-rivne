@@ -11,7 +11,9 @@ namespace :division_cashe do
   desc "Update party statistick"
 
   task whip: :environment do
+    p "Start whip"
     Division.all.find_each do |d|
+      p "division_id: " + d.id
       Vote.joins(:mp).where(division_id: d.id).to_a.group_by{|m| m.mp.faction}.each do |f|
         division = d.id
         faction = f[0]
@@ -33,11 +35,14 @@ namespace :division_cashe do
         whip.save
       end
     end
+    p "End whip"
   end
 
   desc "Update division statistic"
   task info: :environment do
+    p "Start info"
     Division.all.find_each do |d|
+      p "division_id: " + d.id
       division = d.id
       v =  Vote.joins(:mp).where(division_id: d.id).map {|v| v}
       hash = {
@@ -67,6 +72,7 @@ namespace :division_cashe do
       division_info.rebellions = rebellions.sum
       division_info.save
     end
+    p "End info"
   end
   desc "Cache party voted aye 50%+1"
   task party_voted: :environment do
