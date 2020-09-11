@@ -22,7 +22,7 @@ namespace :load_mp do
     mps = JSON.load(open(Settings.source_data_url_deputies))
     mps.each do |m|
       p m["photo_url"]
-      photo = MiniMagick::Image.open(URI.encode(m["photo_url"]))
+      photo = MiniMagick::Image.open(m["photo_url"])
       photo.resize "200x200"
       photo.format 'png'
       photo.write("#{Rails.root}/public/image/#{m["deputy_id"]}.png")
