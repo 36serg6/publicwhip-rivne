@@ -11,7 +11,7 @@ require 'mina/rvm'    # for rvm support. (http://rvm.io)
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :domain, '188.166.28.73'
-set :deploy_to, "/var/www/r4yrivne-2020/"
+set :deploy_to, "/var/www/r4yrivne2020/"
 set :repository, "git@github.com:36serg6/publicwhip-rivne.git"
 set :branch, 'policy-production-2020'
 
